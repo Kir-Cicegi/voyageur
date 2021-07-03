@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{% block content %}
+
+    <h1>Here is your list</h1>
+
+    {% for city in cities %}
+  
+      <span class="card-title">{{ city.name }}</span>
+      <p>Country: {{ city.country }}</p>
+      <p>Favourite Spot: {{ city.fav_spot }}</p>
+      <p>Favourite Local Food: {{ city.fav_local_food }}</p>
+      <p>Days Spent: {{ city.days_spent }}</p>
+      
+      
+  
+    {% endfor %}
+    
+  
+    
+{% endblock %}
