@@ -4,6 +4,23 @@ from .models import *
 from .forms import *
 # Create your views here.
 
+
+from django.views.generic.edit import CreateView, UpdateView, DeleteView
+
+
+# class CityCreate(CreateView):
+#   model = City
+#   fields = '__all__'
+
+class CityUpdate(UpdateView):
+  model = City
+  fields = ['fav_spot', 'fav_local_food', 'days_spent']
+
+class CityDelete(DeleteView):
+  model = City
+  success_url = '/cities/'
+
+
 def home (request):
     return render(request, 'index.html')
 

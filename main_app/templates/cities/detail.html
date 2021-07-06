@@ -16,6 +16,10 @@
             <span class="small text-uppercase text-muted">Favourite Local Food: {{ city.fav_local_food }}</span>
             <br>
             <span class="small text-uppercase text-muted">Days Spent: {{ city.days_spent }}</span>
+            <div class="card-action">
+                <a href="{% url 'cities_update' city.id %}"><button class="btn-warning">Edit</button></a>
+                <a href="{% url 'cities_delete' city.id %}"><button class="btn-warning">Delete</button></a>
+              </div>
             </div>
         </div>
     </div>

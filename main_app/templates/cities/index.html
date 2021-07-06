@@ -14,20 +14,9 @@
                 <span class="small text-uppercase text-muted">Country: {{ city.country }}</span>
                 <hr>
                 <a href="{% url 'detail' city.id %}"><button class="btn-warning">Details</button></a>
-            
-            
+                </div>
             </div>
-       
+     {% endfor %}
         </div>
-
-
-
-      
-      
-  
-    {% endfor %}
-    
-
-</div>
-</div>  
+    </div>  
 {% endblock %}
