@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<h3 class="welcome">City Details</h3>
+<hr>
+
+<div class="container">
+    <div class="row text-center">
+        <div class="col-xl-3 col-sm-6 mb-5">
+            <div class="bg-white rounded shadow-sm py-5 px-4"><img src="https://images.unsplash.com/photo-1534113414509-0eec2bfb493f?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=934&q=80" alt="" width="100" class="img-fluid rounded-circle mb-3 img-thumbnail shadow-sm">
+            <h5 class="mb-0">{{ city.name }}</h5>
+            <span class="small text-uppercase text-muted">Country: {{ city.country }}</span>
+            <br>
+            <span class="small text-uppercase text-muted">Favourite Spot: {{ city.fav_spot }}</span>
+            <br>
+            <span class="small text-uppercase text-muted">Favourite Local Food: {{ city.fav_local_food }}</span>
+            <br>
+            <span class="small text-uppercase text-muted">Days Spent: {{ city.days_spent }}</span>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
