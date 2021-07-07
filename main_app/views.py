@@ -6,6 +6,7 @@ from .forms import *
 
 
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
+from django.views.generic import ListView, DetailView
 
 
 # class CityCreate(CreateView):
@@ -14,7 +15,7 @@ from django.views.generic.edit import CreateView, UpdateView, DeleteView
 
 class CityUpdate(UpdateView):
   model = City
-  fields = ['fav_spot', 'fav_local_food', 'days_spent']
+  fields = ['country','fav_spot', 'fav_local_food', 'days_spent']
 
 class CityDelete(DeleteView):
   model = City
@@ -52,5 +53,6 @@ def new_form (request):
         form = CityForm()
 
         return render(request, 'cities/form.html', {'form': form})
+
 
 

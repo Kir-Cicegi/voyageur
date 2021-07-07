@@ -1,6 +1,12 @@
 from django.db import models
 from django.urls import reverse
 
+
+# RATE = (
+#     ('1', 'Never Going Back!'),
+#     ('2', 'Might Visit Again'),
+#     ('3', 'Going Back For Sure!')
+# )
 # Create your models here.
 class City(models.Model):
     name = models.CharField(max_length=200)
@@ -20,15 +26,16 @@ class City(models.Model):
     def get_absolute_url(self):
         return reverse('detail', kwargs={'city_id': self.id})
 
-# cities = [
-#   City('Tuscany', 'Italy','Antinori winery', 'burrata', 15),
-#   City('Galway', 'Ireland','Busker Brownes', 'soda bread', 7),
-#   City('New York', 'USA', 'Stone Street', 'pretzel', 15)
-# ]
 
-   # def __init__(self, name, country, fav_spot, fav_local_food, days_spent):
-    #     self.name = name
-    #     self.country = country
-    #     self.fav_spot = fav_spot
-    #     self.fav_local_food = fav_local_food
-    #     self.days_spent = days_spent
+# class Rating(models.Model):
+#   date = models.DateField()
+#   rate = models.IntegerField(
+#     max_length=1,
+# 	 choices=RATE,
+# 	 default=RATE[2][1]
+#   )
+
+#   city = models.ForeignKey(City, on_delete=models.CASCADE)
+
+#   def __str__(self):
+#     return self.rate
