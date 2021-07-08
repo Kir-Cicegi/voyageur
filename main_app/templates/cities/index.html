@@ -6,12 +6,12 @@
 
     {% for city in cities %}
     
-    <div class="container py-5">
+    <div class="container py-1">
         <div class="row text-center">
-            <div class="col-xl-3 col-sm-6 mb-5">
-                <div class="bg-white rounded shadow-sm py-5 px-4"><img src="https://images.unsplash.com/photo-1534113414509-0eec2bfb493f?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=934&q=80" alt="" width="100" class="img-fluid rounded-circle mb-3 img-thumbnail shadow-sm">
-                <h5 class="mb-0">{{ city.name }}</h5>
-                <span class="small text-uppercase text-muted">Country: {{ city.country }}</span>
+            <div class="col-sm-12 ">
+                <div class="bg-transparent rounded shadow-sm py-2 px-4 border-bg"><img src="https://images.unsplash.com/photo-1534113414509-0eec2bfb493f?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=934&q=80" alt="" width="100" class="img-fluid rounded-circle mb-3 img-thumbnail shadow-sm">
+                <h5 class="mb-0"><kbd>{{ city.name }}</kbd></h5><br>
+                <span class="large text-uppercase text-muted"><kbd>Country: {{ city.country }}</kbd></span>
                 <hr>
                 <a href="{% url 'detail' city.id %}"><button class="btn-warning">Details</button></a>
                 </div>

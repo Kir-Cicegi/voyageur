@@ -1,81 +1,128 @@
 {% extends 'base.html' %}
 {% block content %}
 
-<h3 class="welcome">City Details</h3>
-<hr>
+
 
 <div class="container">
+    <div class="row">
+        <div class="col-md-5">
+            <div class="project-info-box mt-0 text-center">
+            
+                <h2 class="mb-0"><kbd>{{ city.name }}</kbd></h2>
+                <hr>
+                <img src="https://images.unsplash.com/photo-1534113414509-0eec2bfb493f?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=934&q=80" alt="" width="100" class="img-fluid rounded-circle mb-3 img-thumbnail shadow-sm">
+                <br>
+                <div class=" d-inline ">
+                    <a href="{% url 'cities_update' city.id %}"><button class="btn-warning">Edit</button></a>
+                    <a href="{% url 'cities_delete' city.id %}"><button class="btn-warning">Delete</button></a>
+                  </div>
+            </div><!-- / project-info-box -->
+
+            <div class="project-info-box">
+                <div class="card"> 
+                <p><b>Country:</b> {{ city.country }}</p>
+                <p><b>Favourite Spot:</b> {{ city.fav_spot }}</p>
+                <p><b>Favourite Local Food:</b> {{ city.fav_local_food }}</p>
+                <p><b>Days Spent:</b> {{ city.days_spent }}</p>
+                </div>
+                
+                
+            </div><!-- / project-info-box -->
+
+            
+        </div><!-- / column -->
+
+        <div class="col-md-7 ">
+            <form class="form-horizontal small-screen-form" method="POST" action="{% url 'add_spot' city.id %}" >
+                {% csrf_token %}
+                <div class= "text-center">
+                <div class="form-group">
+                    <span class="col-md-1 col-md-offset-2 text-center">Tourist Attraction:</span>
+                    <br>
+                    <div class="col-md-12 ">
+                        {{spots_form.attraction}}
+                    </div>
+                </div>
+
+                <div class="form-group ">
+                    <span class="col-md-1 col-md-offset-2 text-center">Date Visited:</span>
+                    <br>
+                    <div class="col-md-12">
+                        <input type="date" value={{spots_form.date}} >
+                    </div>
+                </div>
+              
+                <div class="col-md-12 text-center">
+                    <button type="submit" class="btn btn-warning btn-sm">Add Attraction</button>
+                </div>
+                </form>
+                </div>
+            <div class="project-info-box">
+                <div class="card"> 
+                {% for spot in spots%}
+                <p><b>Date:</b> {{spot.date}}</p>
+                <p><b>Attraction:</b> {{spot.attraction}}</p>
+                {% endfor %}
+                </div>
+            </div><!-- / project-info-box -->
+        </div><!-- / column -->
+    
+
+<hr>
+<!--list of airlines associated with the city-->
+<div class="container py-1">
     <div class="row text-center">
-        <div class="col-xl-3 col-sm-6 mb-5">
-            <div class="bg-white rounded shadow-sm py-5 px-4"><img src="https://images.unsplash.com/photo-1534113414509-0eec2bfb493f?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=934&q=80" alt="" width="100" class="img-fluid rounded-circle mb-3 img-thumbnail shadow-sm">
-            <h5 class="mb-0">{{ city.name }}</h5>
-            <span class="small text-uppercase text-muted">Country: {{ city.country }}</span>
-            <br>
-            <span class="small text-uppercase text-muted">Favourite Spot: {{ city.fav_spot }}</span>
-            <br>
-            <span class="small text-uppercase text-muted">Favourite Local Food: {{ city.fav_local_food }}</span>
-            <br>
-            <span class="small text-uppercase text-muted">Days Spent: {{ city.days_spent }}</span>
-            <div class="card-action">
-                <a href="{% url 'cities_update' city.id %}"><button class="btn-warning">Edit</button></a>
-                <a href="{% url 'cities_delete' city.id %}"><button class="btn-warning">Delete</button></a>
-              </div>
+        <div class="col-sm-12 ">
+            <div class="project-info-box mt-0 text-center">
+                <h5><kbd>Airlines flying from {{city.name}}: </kbd></h5>
+                {% if city.airlines.count %}
+                {% for airline in city.airlines.all %}
+            <div class="card">
+                <span>{{ airline }}</span> 
+                <div class="card-action">
+                    <form action="{% url 'unassoc_airline' city.id airline.id %}" method="post">
+                    {% csrf_token %}
+                    <div class="col-md-12 text-center">
+                    <button type="submit" class="btn btn-warning btn-sm">Remove</button>
+                    </div>
+                    </form>
+                </div>
+            </div>
+        {% endfor %}
+      {% else %}
+        <h4>No Airlines :(</h4>
+      {% endif %}
             </div>
         </div>
+    
+<!--List of available airlines to add-->
+    <div class="col-sm-12 ">
+    <div class="project-info-box mt-0 text-center">
+      <h5><kbd>Available Airlines</kbd></h5><br>
+      {% if airlines.count %}
+        {% for airline in airlines.all %}
+            <div class="card">  
+                <span>{{ airline }}</span> 
+            <div class="card-action">
+              <form action="{% url 'assoc_airline' city.id airline.id %}" method="post">
+                  {% csrf_token %}
+                  <div class="col-md-12 text-center">
+                    <button type="submit" class="btn btn-warning btn-sm">Add</button>
+                </div>
+              </form>
+            </div>
+          </div>
+        {% endfor %}
+      {% else %}
+        <h4>No more airlines to add</h4>
+      {% endif %}
     </div>
+    </div>
+  </div>
 </div>
-<div class="bg-light rounded shadow-sm py-5 px-4">
-<div class="well well-sm">
-    <form class="form-horizontal" method="POST" action="{% url 'add_spot' city.id %}" >
-        {% csrf_token %}
-        <fieldset>
-            
+</div>
+</div>
 
-            <div class="form-group">
-                <span class="col-md-1 col-md-offset-2 text-center"><i class="fa fa-map bigicon">Tourist Attraction Name:</i></span>
-                <div class="col-md-8">
-                    {{spots_form.attraction}}
-                </div>
-            </div>
-            <div class="form-group">
-                <span class="col-md-1 col-md-offset-2 text-center"><i class="fa fa-calendar-check-o bigicon">Date You Visited:</i></span>
-                <div class="col-md-8">
-                    {{spots_form.date}}
-                </div>
-            </div>
-            <div class="form-group">
-                <div class="col-md-12 text-left">
-                    <button type="submit" class="btn btn-warning btn-lg">Add Attraction<i class="fa fa-paper-plane-o bigicon"></i></button>
-                </div>
-            </div>
-            </fieldset>
-            </form>
-            </div>
-        </div> 
-        <table class="striped">
-            <thead>
-              <tr><th>Date</th><th>Attraction</th></tr>
-            </thead>
-            <tbody>
-              {% for spot in spots%}
-                <tr>
-                  <td>{{spot.date}}</td>
-                  <td>{{spot.attraction}}</td>
-                </tr>
-              {% endfor %}
-            </tbody>
-          </table>
 
-<script>
-            // create a datepicker
-    var dateEl = document.getElementById('id_date');
-  M.Datepicker.init(dateEl, {
-    format: 'yyyy-mm-dd',
-    defaultDate: new Date(),
-    setDefaultDate: true,
-    autoClose: true
-  });
-
-</script>
 
 {% endblock %}

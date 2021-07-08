@@ -5,6 +5,7 @@ body {
     background-image: url('https://images.unsplash.com/photo-1446822679794-fbd084d10491?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=2250&q=80');
     background-size: cover;
     
+    
   }
   
 
@@ -31,7 +32,8 @@ body {
  
 
   .card {
-      background-color: blanchedalmond;
+      background-color: rgba(255, 235, 205, 0.9);
+      padding:10px;
   }
 
   .welcome{
@@ -60,4 +62,74 @@ body {
 }
 
 
+
+.project-info-box p {
+    margin-bottom: 15px;
+    padding-bottom: 15px;
+    border-bottom: 1px solid #d5dadb;
+}
   
+.has-spacer {
+  margin-left: 30px;
+  margin-right: 30px;
+  margin-bottom: 30px;
+}
+
+.has-spacer-extra-space {
+  margin-left: 30px;
+  margin-right: 30px;
+  margin-bottom: 30px;
+}
+
+.has-side-spacer {
+  margin-left: 30px;
+  margin-right: 30px;
+}
+
+.project-title {
+  font-size: 1.25rem;
+}
+
+.project-skill {
+  font-size: 0.9rem;
+  font-weight: 400;
+  letter-spacing: 0.06rem;
+}
+
+.project-info-box {
+  margin: 25px 0;
+  border: 1px solid rgba(240, 218, 22, 0.9);
+  padding: 30px 40px;
+  border-radius: 5px;
+  /* background-color: rgba(250, 183, 39, 0.3) ; */
+}
+
+.border-bg{
+  border: 1px solid rgba(240, 218, 22, 0.8);
+}
+.project-info-box p {
+  margin-bottom: 15px;
+  padding-bottom: 15px;
+  border-bottom: 1px solid #d5dadb;
+}
+
+.project-info-box p:last-child {
+  margin-bottom: 0;
+  padding-bottom: 0;
+  border-bottom: none;
+}
+
+.container{
+  margin-top: 20px;
+  font-size: 15px;
+}
+
+/* small screen add background color to form  */
+
+@media screen and (max-width: 800px){
+  .small-screen-form {
+    background-color: rgba(250, 183, 39, 0.3) ;
+    padding:20px;
+    
+  }
+}

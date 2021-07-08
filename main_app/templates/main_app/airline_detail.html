@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% block content %}
+
+    <h4 class="welcome">Here are the details for {{airline.airline}}</h4>
+    <hr>
+
+    
+    <div class="container py-5">
+        <div class="row text-center">
+            <div class="col-xl-3">
+                <div class="bg-transparent rounded shadow-sm py-3 px-4 border-bg">
+                <h5 class="mb-0 "><kbd>{{ airline.airline }}</kbd></h5>
+                <br>
+                <span class="large text-uppercase ">Rating: {{ airline.rating }}</span>
+                <hr>
+                <a href=""><button class="btn-warning">Add a city</button></a>
+                </div>
+            </div>
+        </div>
+    </div>  
+{% endblock %}

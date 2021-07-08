@@ -1,6 +1,6 @@
 {% extends 'base.html' %}
 {% block content %}
-{% load static %}
+
     <div class="welcome">
         <h4>Please Do Tell!! We want all the teee:)</h4>
         <p>Where did you go last?</p>
@@ -10,7 +10,7 @@
 
 
     <div class="container">
-        <div class="row">
+        <div class="row border-bg ">
             <div class="col-md-12">
                 <div class="well well-sm">
                     <form class="form-horizontal" method="POST" action="/form/">
@@ -66,19 +66,4 @@
         </div>
     </div>
 
-    <!-- <form class="form-horizontal" method="POST" action="/">
-        {% csrf_token %}
-        {{form}}
-		 City: {{form.name}}
-        <br>
-        Country: {{form.country}}
-        <br>
-        Favourite spot: {{form.fav_spot}}
-        <br>
-        Favourite Local Food: {{form.fav_local_food}}
-        <br>
-        How many days were you there: {{form.days_spent}}
-         -->
-    <!-- </form>
-    <button type="submit" class="btn btn-primary btn-lg">Add<i class="fa fa-paper-plane-o bigicon"></i></button>  -->
 {% endblock %}
