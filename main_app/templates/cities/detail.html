@@ -10,12 +10,20 @@
             
                 <h2 class="mb-0"><kbd>{{ city.name }}</kbd></h2>
                 <hr>
-                <img src="https://images.unsplash.com/photo-1534113414509-0eec2bfb493f?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=934&q=80" alt="" width="100" class="img-fluid rounded-circle mb-3 img-thumbnail shadow-sm">
+                {% for photo in city.photo_set.all %}
+                <img src="{{photo.url}}" alt="" width="250"  height="350" class="img-fluid rounded-circle mb-3 img-thumbnail shadow-sm">
+                {% empty %}
+                <div class="card-panel teal-text center-align">No Photos Uploaded</div>
+                {% endfor %}
                 <br>
-                <div class=" d-inline ">
-                    <a href="{% url 'cities_update' city.id %}"><button class="btn-warning">Edit</button></a>
-                    <a href="{% url 'cities_delete' city.id %}"><button class="btn-warning">Delete</button></a>
-                  </div>
+               
+                <form action="{% url 'add_photo' city.id %}" enctype="multipart/form-data" method="POST" class="card-panel">
+                {% csrf_token %}
+                <input type="file" name="photo-file">
+                <br><br>
+                <input type="submit" class="btn-warning" value="Upload Photo">
+                </form>
+         
             </div><!-- / project-info-box -->
 
             <div class="project-info-box">
@@ -25,7 +33,10 @@
                 <p><b>Favourite Local Food:</b> {{ city.fav_local_food }}</p>
                 <p><b>Days Spent:</b> {{ city.days_spent }}</p>
                 </div>
-                
+                <div class=" d-inline ">
+                    <a href="{% url 'cities_update' city.id %}"><button class="btn-warning">Edit</button></a>
+                    <a href="{% url 'cities_delete' city.id %}"><button class="btn-warning">Delete</button></a>
+                  </div>
                 
             </div><!-- / project-info-box -->
 

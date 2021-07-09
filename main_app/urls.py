@@ -21,4 +21,6 @@ urlpatterns = [
     path('airlines/create/', views.AirlineCreate.as_view(), name='airline_create'),
     
     path('accounts/signup/', views.signup, name='signup'),
+
+    path('cities/<int:city_id>/add_photo/', views.add_photo, name='add_photo'),
 ]
