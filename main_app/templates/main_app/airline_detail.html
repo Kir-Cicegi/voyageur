@@ -11,8 +11,9 @@
                 <div class="bg-transparent rounded shadow-sm py-3 px-4 border-bg">
                 <h5 class="mb-0 "><kbd>{{ airline.airline }}</kbd></h5>
                 <br>
-                <span class="large text-uppercase ">Rating: {{ airline.rating }}</span>
+                <span class="large text-uppercase ">Rating: {{ airline.get_rating_display }}</span>
                 <hr>
+                <!--Function coming soon:)-->
                 <a href=""><button class="btn-warning">Add a city</button></a>
                 </div>
             </div>

@@ -1,0 +1,95 @@
+
+{% extends 'base.html' %}
+{% block content %}
+
+<div class="container">
+    <div class="profile">
+        <div class="profile-header">
+            <div class="profile-header-cover"></div>
+            <div class="profile-header-content">
+                <div class="profile-header-img">
+                    <img src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="" />
+                </div>
+                <ul class="profile-header-tab nav nav-tabs nav-tabs-v2">
+                    
+                    <li class="nav-item">
+                        <a href="#profile-followers" class="nav-link active" data-toggle="tab">
+                            <div class="nav-field">Cities</div>
+                            <div class="nav-value">3</div>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#profile-media" class="nav-link" data-toggle="tab">
+                            <div class="nav-field">Photos</div>
+                            <div class="nav-value">3</div>
+                        </a>
+                    </li>
+                    
+                </ul>
+            </div>
+        </div>
+
+        <div class="profile-container">
+            <div class="profile-sidebar">
+                <div class="desktop-sticky-top">
+    
+                    <div class="font-weight-600 mb-3 text-muted mt-n2"><kbd>@{{request.user}}</kbd></div>
+                    <hr class="mt-4 mb-4" />
+                </div>
+            </div>
+
+            <div class="profile-content">
+                <div class="row">
+                    <div class="col-xl-12  ">
+                        <div class="tab-content p-0">
+                            <div class="tab-pane fade active show" id="profile-followers">
+                                <div class="list-group ">
+                                    {% for city in cities %}
+                                    <div class="list-group-item d-flex align-items-center border-bg">
+                                        <img src="https://images.unsplash.com/photo-1534113414509-0eec2bfb493f?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=934&q=80" alt="" width="50px" class="rounded-sm ml-n2" />
+                                        <div class="flex-fill pl-3 pr-3">
+                                            <div><a href="#" class="text-dark font-weight-600">{{ city.name }}</a></div>
+                                            <div class="text-muted fs-13px">Country: {{ city.country }}</div>
+                                        </div>
+                                        <a href="{% url 'detail' city.id %}" class="btn btn-outline-primary">Details</a>
+                                    </div>
+                                    {% endfor %}
+                                    
+                                </div>
+                                
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+            </div>
+            
+        </div>
+    </div>
+</div>
+
+
+{% endblock %}
+
+<!-- 
+    <h4 class="welcome">Here is the list of all the cities you have visited:</h4>
+    <hr>
+
+    {% for city in cities %}
+    
+    <div class="container py-1">
+        <div class="row text-center">
+            <div class="col-sm-12 ">
+                <div class="bg-transparent rounded shadow-sm py-2 px-4 border-bg"><img src="https://images.unsplash.com/photo-1534113414509-0eec2bfb493f?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=934&q=80" alt="" width="100" class="img-fluid rounded-circle mb-3 img-thumbnail shadow-sm">
+                <h5 class="mb-0"><kbd>{{ city.name }}</kbd></h5><br>
+                <span class="large text-uppercase text-muted"><kbd>Country: {{ city.country }}</kbd></span>
+                <hr>
+                <a href="{% url 'detail' city.id %}"><button class="btn-warning">Details</button></a>
+                </div>
+            </div>
+     {% endfor %}
+        </div>
+    </div>   -->
+
+  
+    

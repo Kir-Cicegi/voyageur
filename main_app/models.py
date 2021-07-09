@@ -1,5 +1,6 @@
 from django.db import models
 from django.urls import reverse
+from django.contrib.auth.models import User
 
 
 RATE = (
@@ -20,11 +21,11 @@ class Airline(models.Model):
     )
 
     def __str__(self):
-        return self.airline
+        return f"{self.airline} ~ (Rating:{self.get_rating_display()})"
 
     def get_absolute_url(self):
         return reverse('city_detail', kwargs={'pk': self.id})
-        
+
     class Meta:
         ordering = ['-rating']
 
@@ -36,6 +37,7 @@ class City(models.Model):
     fav_local_food = models.CharField(max_length=200)
     days_spent = models.IntegerField(max_length=200)
     airlines = models.ManyToManyField(Airline)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
 
     def __str__(self):
         return self.name
